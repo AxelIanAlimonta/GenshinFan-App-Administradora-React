@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getElementos, createElemento, updateElemento, deleteElemento } from '../services/elementoApiService';
+import { getElementos, createElemento, updateElemento, deleteElemento } from '../services/dataServices/elementoApiService';
 
 const useFetchElementos = () => {
     const [elementos, setElementos] = useState([]);

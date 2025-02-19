@@ -9,12 +9,15 @@ const Elementos = () => {
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [newElementoDescripcion, setNewElementoDescripcion] = useState('');
+    const [newElementoImagenURL, setNewElementoImagenURL] = useState('');
     const [editElementoDescripcion, setEditElementoDescripcion] = useState('');
+    const [editElementoImagenURL, setEditElementoImagenURL] = useState('');
     const [editElementoId, setEditElementoId] = useState(null);
 
-    const handleEdit = (id, descripcion) => {
+    const handleEdit = (id, descripcion, imagenURL) => {
         setEditElementoId(id);
-        setEditElementoDescripcion(descripcion);
+        setEditElementoDescripcion(descripcion || '');
+        setEditElementoImagenURL(imagenURL || '');
         setShowEditModal(true);
     };
 
@@ -22,21 +25,32 @@ const Elementos = () => {
         removeElemento(id);
     };
 
-    const handleAdd = () => {
-        const newElemento = { descripcion: newElementoDescripcion }; // Actualiza con los datos reales
-        addElemento(newElemento);
-        setShowAddModal(false);
-        setNewElementoDescripcion('');
+    const handleAdd = async () => {
+        try {
+            const newElemento = { descripcion: newElementoDescripcion, imagenURL: newElementoImagenURL };
+            addElemento(newElemento);
+            setShowAddModal(false);
+            setNewElementoDescripcion('');
+            setNewElementoImagenURL('');
+        } catch (error) {
+            console.error('Error adding elemento:', error);
+        }
     };
 
-    const handleUpdate = () => {
-        const updatedElemento = {
-            descripcion: editElementoDescripcion
-        }; // Actualiza con los datos reales
-        editElemento(editElementoId, updatedElemento);
-        setShowEditModal(false);
-        setEditElementoDescripcion('');
-        setEditElementoId(null);
+    const handleUpdate = async () => {
+        try {
+            const updatedElemento = {
+                descripcion: editElementoDescripcion,
+                imagenURL: editElementoImagenURL
+            };
+            editElemento(editElementoId, updatedElemento);
+            setShowEditModal(false);
+            setEditElementoDescripcion('');
+            setEditElementoImagenURL('');
+            setEditElementoId(null);
+        } catch (error) {
+            console.error('Error updating elemento:', error);
+        }
     };
 
     const handleShowAddModal = () => setShowAddModal(true);
@@ -54,8 +68,9 @@ const Elementos = () => {
                     {elementos.map((elemento) => (
                         <li key={elemento.id} className="list-group-item d-flex justify-content-between align-items-center">
                             {elemento.descripcion}
+                            <img src={elemento.imagenURL} alt={elemento.descripcion} style={{ width: '50px', height: '50px' }} />
                             <div>
-                                <Button variant="warning" size="sm" className="me-2" onClick={() => handleEdit(elemento.id, elemento.descripcion)}>Editar</Button>
+                                <Button variant="warning" size="sm" className="me-2" onClick={() => handleEdit(elemento.id, elemento.descripcion, elemento.imagenURL)}>Editar</Button>
                                 <Button variant="danger" size="sm" onClick={() => handleDelete(elemento.id)}>Eliminar</Button>
                             </div>
                         </li>
@@ -76,6 +91,15 @@ const Elementos = () => {
                                 placeholder="Ingrese la descripción del elemento"
                                 value={newElementoDescripcion}
                                 onChange={(e) => setNewElementoDescripcion(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formElementoImagenURL">
+                            <Form.Label>URL de la Imagen del Elemento</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Ingrese la URL de la imagen del elemento"
+                                value={newElementoImagenURL}
+                                onChange={(e) => setNewElementoImagenURL(e.target.value)}
                             />
                         </Form.Group>
                     </Form>
@@ -103,6 +127,15 @@ const Elementos = () => {
                                 placeholder="Ingrese la nueva descripción del elemento"
                                 value={editElementoDescripcion}
                                 onChange={(e) => setEditElementoDescripcion(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formEditElementoImagenURL">
+                            <Form.Label>URL de la Imagen del Elemento</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Ingrese la nueva URL de la imagen del elemento"
+                                value={editElementoImagenURL}
+                                onChange={(e) => setEditElementoImagenURL(e.target.value)}
                             />
                         </Form.Group>
                     </Form>
