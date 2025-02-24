@@ -1,6 +1,4 @@
-import config from '../../../config';
-
-const { API_URL } = config;
+import { API_URL } from './config';
 
 export const getElementos = async () => {
     const response = await fetch(`${API_URL}/elementos`);
