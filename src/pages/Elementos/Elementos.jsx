@@ -1,156 +1,83 @@
-import React, { useState } from 'react';
-import './Elementos.css';
-import Header from '../../components/Header/Header';
-import useFetchElementos from '../../hooks/useFetchElementos.js';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Button, ListGroup } from "react-bootstrap";
+import "./Elementos.css";
+import Header from "../../components/Header/Header";
+import useFetchElementos from "../../hooks/useFetchElementos";
+import ElementosModal from "./ElementosModal";
+import { useState } from "react";
 
-const Elementos = () => {
-    const { elementos, error, addElemento, editElemento, removeElemento } = useFetchElementos();
-    const [showAddModal, setShowAddModal] = useState(false);
-    const [showEditModal, setShowEditModal] = useState(false);
-    const [newElementoDescripcion, setNewElementoDescripcion] = useState('');
-    const [newElementoImagenURL, setNewElementoImagenURL] = useState('');
-    const [editElementoDescripcion, setEditElementoDescripcion] = useState('');
-    const [editElementoImagenURL, setEditElementoImagenURL] = useState('');
-    const [editElementoId, setEditElementoId] = useState(null);
+function ElementosRemake() {
 
-    const handleEdit = (id, descripcion, imagenURL) => {
-        setEditElementoId(id);
-        setEditElementoDescripcion(descripcion || '');
-        setEditElementoImagenURL(imagenURL || '');
-        setShowEditModal(true);
-    };
+    const { elementos, addElemento, editElemento, removeElemento } = useFetchElementos();
+    const [editingElement, setEditingElement] = useState(false);
+    const [addingElement, setAddingElement] = useState(false);
 
-    const handleDelete = (id) => {
+    const [id, setId] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+    const [imagenURL, setImagenURL] = useState("");
+
+
+    function handleCloseModal() {
+        setEditingElement(false);
+        setAddingElement(false);
+    }
+
+    function handleAddElement({ descripcion, imagenURL }) {
+        addElemento({ descripcion, imagenURL });
+        handleCloseModal();
+    }
+
+    function handleEditElement({ id, descripcion, imagenURL }) {
+        editElemento(id, { id, descripcion, imagenURL });
+        handleCloseModal();
+    }
+
+    function handleEditingModal({ id, descripcion, imagenURL }) {
+        setId(id);
+        setDescripcion(descripcion);
+        setImagenURL(imagenURL);
+        setEditingElement(true);
+    }
+
+    function handleAddingModal() {
+        setDescripcion("");
+        setImagenURL("");
+        setAddingElement(true);
+    }
+
+    function handleDeleteElement(id) {
         removeElemento(id);
-    };
-
-    const handleAdd = async () => {
-        try {
-            const newElemento = { descripcion: newElementoDescripcion, imagenURL: newElementoImagenURL };
-            addElemento(newElemento);
-            setShowAddModal(false);
-            setNewElementoDescripcion('');
-            setNewElementoImagenURL('');
-        } catch (error) {
-            console.error('Error adding elemento:', error);
-        }
-    };
-
-    const handleUpdate = async () => {
-        try {
-            const updatedElemento = {
-                descripcion: editElementoDescripcion,
-                imagenURL: editElementoImagenURL
-            };
-            editElemento(editElementoId, updatedElemento);
-            setShowEditModal(false);
-            setEditElementoDescripcion('');
-            setEditElementoImagenURL('');
-            setEditElementoId(null);
-        } catch (error) {
-            console.error('Error updating elemento:', error);
-        }
-    };
-
-    const handleShowAddModal = () => setShowAddModal(true);
-    const handleCloseAddModal = () => setShowAddModal(false);
-    const handleCloseEditModal = () => setShowEditModal(false);
+    }
 
     return (
         <>
             <Header />
-            <div className="container">
-                <h1>Elementos</h1>
-                {error && <p>Error fetching elementos: {error.message}</p>}
-                <Button className="mb-3" onClick={handleShowAddModal}>Agregar Elemento</Button>
-                <ul className="list-group">
+            <main>
+                <Button variant="success" className="agregarBtn" onClick={handleAddingModal}>Agregar Elemento</Button>
+                <ListGroup>
                     {elementos.map((elemento) => (
-                        <li key={elemento.id} className="list-group-item d-flex justify-content-between align-items-center">
-                            {elemento.descripcion}
-                            <img src={elemento.imagenURL} alt={elemento.descripcion} style={{ width: '50px', height: '50px' }} />
-                            <div>
-                                <Button variant="warning" size="sm" className="me-2" onClick={() => handleEdit(elemento.id, elemento.descripcion, elemento.imagenURL)}>Editar</Button>
-                                <Button variant="danger" size="sm" onClick={() => handleDelete(elemento.id)}>Eliminar</Button>
-                            </div>
-                        </li>
+                        <ListGroup horizontal key={elemento.id} className="itemContainer">
+                            <ListGroup.Item className="item">
+                                {elemento.descripcion}
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <img src={elemento.imagenURL} alt={elemento.descripcion} className="itemImagen" />
+                            </ListGroup.Item>
+                            <ListGroup.Item className="item">
+                                <Button variant="primary" onClick={() => handleEditingModal({ id: elemento.id, descripcion: elemento.descripcion, imagenURL: elemento.imagenURL })}>Editar</Button>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="item">
+                                <Button variant="danger" onClick={() => handleDeleteElement(elemento.id)}>Eliminar</Button>
+                            </ListGroup.Item>
+
+                        </ListGroup>
                     ))}
-                </ul>
-            </div>
+                </ListGroup>
+            </main>
 
-            <Modal show={showAddModal} onHide={handleCloseAddModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Agregar Elemento</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="formElementoDescripcion">
-                            <Form.Label>Descripción del Elemento</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ingrese la descripción del elemento"
-                                value={newElementoDescripcion}
-                                onChange={(e) => setNewElementoDescripcion(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="formElementoImagenURL">
-                            <Form.Label>URL de la Imagen del Elemento</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ingrese la URL de la imagen del elemento"
-                                value={newElementoImagenURL}
-                                onChange={(e) => setNewElementoImagenURL(e.target.value)}
-                            />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseAddModal}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={handleAdd}>
-                        Agregar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
 
-            <Modal show={showEditModal} onHide={handleCloseEditModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Editar Elemento</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="formEditElementoDescripcion">
-                            <Form.Label>Descripción del Elemento</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ingrese la nueva descripción del elemento"
-                                value={editElementoDescripcion}
-                                onChange={(e) => setEditElementoDescripcion(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="formEditElementoImagenURL">
-                            <Form.Label>URL de la Imagen del Elemento</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ingrese la nueva URL de la imagen del elemento"
-                                value={editElementoImagenURL}
-                                onChange={(e) => setEditElementoImagenURL(e.target.value)}
-                            />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseEditModal}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={handleUpdate}>
-                        Actualizar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <ElementosModal editing={editingElement} adding={addingElement} handleClose={handleCloseModal} handleEditElement={handleEditElement} handleAddElement={handleAddElement} descripcion={descripcion} imagenURL={imagenURL} setDescripcion={setDescripcion} setImagenURL={setImagenURL} id={id} />
         </>
     );
-};
+}
 
-export default Elementos;
+export default ElementosRemake;

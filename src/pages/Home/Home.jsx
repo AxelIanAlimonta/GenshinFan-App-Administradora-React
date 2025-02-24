@@ -6,6 +6,7 @@ const Home = () => {
             <Header />
             <div className="container-fluid">
                 <h1>Home :D</h1>
+              
             </div>
         </>
     );
