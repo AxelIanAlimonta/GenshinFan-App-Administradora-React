@@ -1,0 +1,13 @@
+.personajesMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nombrePersonaje {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

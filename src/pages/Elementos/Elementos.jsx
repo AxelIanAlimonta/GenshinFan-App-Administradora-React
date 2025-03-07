@@ -7,7 +7,7 @@ import { useState } from "react";
 
 function ElementosRemake() {
 
-    const { elementos, addElemento, editElemento, removeElemento } = useFetchElementos();
+    const { elementos, addElemento, editElemento, removeElemento, loading } = useFetchElementos();
     const [editingElement, setEditingElement] = useState(false);
     const [addingElement, setAddingElement] = useState(false);
 
@@ -47,6 +47,12 @@ function ElementosRemake() {
     function handleDeleteElement(id) {
         removeElemento(id);
     }
+    if (loading) return <>
+        <Header />
+        <main>
+            <h1>Cargando...</h1>
+        </main>
+    </>
 
     return (
         <>

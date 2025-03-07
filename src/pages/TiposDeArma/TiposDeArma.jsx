@@ -6,7 +6,7 @@ import TiposDeArmaModal from "./TiposDeArmaModal";
 import { useState } from "react";
 
 function TiposDeArma() {
-    const { tiposDeArma, addTipoDeArma, editTipoDeArma, removeTipoDeArma } = useFetchTiposDeArma();
+    const { tiposDeArma, addTipoDeArma, editTipoDeArma, removeTipoDeArma, loading } = useFetchTiposDeArma();
     const [editingTipoDeArma, setEditingTipoDeArma] = useState(false);
     const [addingTipoDeArma, setAddingTipoDeArma] = useState(false);
 
@@ -44,6 +44,13 @@ function TiposDeArma() {
 
     function handleDeleteTipoDeArma(id) {
         removeTipoDeArma(id);
+    }
+
+    if (loading) {
+        return <>
+            <Header />
+            <p>Cargando...</p>;
+        </>
     }
 
     return (

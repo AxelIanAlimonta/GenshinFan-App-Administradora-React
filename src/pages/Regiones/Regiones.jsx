@@ -6,7 +6,7 @@ import RegionesModal from "./RegionesModal";
 import { useState } from "react";
 
 function Regiones() {
-    const { regiones, addRegion, editRegion, removeRegion } = useFetchRegiones();
+    const { regiones, addRegion, editRegion, removeRegion, loading } = useFetchRegiones();
     const [editingRegion, setEditingRegion] = useState(false);
     const [addingRegion, setAddingRegion] = useState(false);
 
@@ -44,6 +44,13 @@ function Regiones() {
 
     function handleDeleteRegion(id) {
         removeRegion(id);
+    }
+
+    if (loading) {
+        return <>
+            <Header />
+            <p>Cargando...</p>;
+        </>
     }
 
     return (
