@@ -5,11 +5,17 @@ import useFetchPersonaje from '../../hooks/useFetchPersonaje';
 import { updatePersonaje } from '../../services/dataServices/personajesApiService';
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading/Loading';
+import useFetchElementos from '../../hooks/useFetchElementos'; // Import the hook
+import useFetchRegiones from '../../hooks/useFetchRegiones'; // Import the hook
+import useFetchTiposDeArma from '../../hooks/useFetchTiposDeArma'; // Import the hook
 import './EditarPersonaje.css';
 
 const EditarPersonaje = () => {
     const { id } = useParams();
     const { personaje, loading } = useFetchPersonaje(id);
+    const { elementos } = useFetchElementos(); // Fetch elementos
+    const { regiones } = useFetchRegiones(); // Fetch regiones
+    const { tiposDeArma } = useFetchTiposDeArma(); // Fetch tipos de arma
     const [formData, setFormData] = useState({
         nombre: '',
         rareza: '',
@@ -17,7 +23,10 @@ const EditarPersonaje = () => {
         defBase: '',
         vidaBase: '',
         imgTarjeta: '',
-        imgDisenio: ''
+        imgDisenio: '',
+        id_Elemento: '', // Add id_Elemento to the state
+        id_Region: '', // Add id_Region to the state
+        id_TipoDeArma: '' // Add id_TipoDeArma to the state
     });
 
     const navigate = useNavigate();
@@ -79,6 +88,59 @@ const EditarPersonaje = () => {
                                         <option value="">Seleccionar rareza</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
+                                    </Form.Select>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={4}>
+                                <Form.Group controlId="formElemento">
+                                    <Form.Label>Elemento</Form.Label>
+                                    <Form.Select
+                                        name="id_Elemento"
+                                        value={formData.id_Elemento}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">Seleccionar elemento</option>
+                                        {elementos.map((elemento) => (
+                                            <option key={elemento.id} value={elemento.id}>
+                                                {elemento.descripcion}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
+                                </Form.Group>
+                            </Col>
+                            <Col md={4}>
+                                <Form.Group controlId="formRegion">
+                                    <Form.Label>Región</Form.Label>
+                                    <Form.Select
+                                        name="id_Region"
+                                        value={formData.id_Region}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">Seleccionar región</option>
+                                        {regiones.map((region) => (
+                                            <option key={region.id} value={region.id}>
+                                                {region.descripcion}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
+                                </Form.Group>
+                            </Col>
+                            <Col md={4}>
+                                <Form.Group controlId="formTipoDeArma">
+                                    <Form.Label>Tipo de Arma</Form.Label>
+                                    <Form.Select
+                                        name="id_TipoDeArma"
+                                        value={formData.id_TipoDeArma}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">Seleccionar tipo de arma</option>
+                                        {tiposDeArma.map((tipoDeArma) => (
+                                            <option key={tipoDeArma.id} value={tipoDeArma.id}>
+                                                {tipoDeArma.descripcion}
+                                            </option>
+                                        ))}
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
