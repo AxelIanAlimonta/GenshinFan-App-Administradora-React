@@ -221,6 +221,7 @@ const EditarPersonaje = () => {
                                 </Form.Group>
                             </Col>
                         </Row>
+
                         <Button variant="success" type="submit" className="mt-3">
                             Guardar Cambios
                         </Button>
