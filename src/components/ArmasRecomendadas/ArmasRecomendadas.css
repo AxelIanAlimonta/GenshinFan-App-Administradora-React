@@ -1,0 +1,12 @@
+.contenerdorArmasRecomendadas {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modalAgregarArmasRecomendadas{
+    width: 1500px;
+}
