@@ -1,6 +1,6 @@
-import { use } from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import PreviaDeImagen from "../../components/PreviaDeImagen/PreviaDeImagen";
 
 export default function AgregarRegion() {
 
@@ -26,6 +26,7 @@ export default function AgregarRegion() {
                 <Form.Group controlId="formImagenURL">
                     <Form.Label>URL de la Imagen</Form.Label>
                     <Form.Control type="text" placeholder="URL" value={imagenURL} onChange={(e) => setImagenURL(e.target.value)} />
+                    <PreviaDeImagen imagenURL={imagenURL} />
                 </Form.Group>
             </Form>
             <Button variant="secondary" onClick={handleCancelar}>
