@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { createPersonaje } from '../../../services/dataServices/personajesApiService';
 import Header from '../../../components/Header/Header';
-import useFetchElementos from '../../../hooks/useFetchElementos'; // Import the hook
-import useFetchRegiones from '../../../hooks/useFetchRegiones'; // Import the hook
-import useFetchTiposDeArma from '../../../hooks/useFetchTiposDeArma'; // Import the hook
+import PreviaDeImagen from '../../../components/PreviaDeImagen/PreviaDeImagen';
+import useFetchElementos from '../../../hooks/useFetchElementos';
+import useFetchRegiones from '../../../hooks/useFetchRegiones';
+import useFetchTiposDeArma from '../../../hooks/useFetchTiposDeArma';
 import './AgregarPersonaje.css';
 
 function AgregarPersonaje() {
@@ -183,13 +184,7 @@ function AgregarPersonaje() {
                                     value={personaje.imgTarjeta}
                                     onChange={handleChange}
                                 />
-                                {personaje.imgTarjeta && (
-                                    <img
-                                        src={personaje.imgTarjeta}
-                                        alt="Vista previa de la imagen de la tarjeta"
-                                        className="img-preview"
-                                    />
-                                )}
+                                <PreviaDeImagen imagenURL={personaje.imgTarjeta} />
                             </Form.Group>
                         </Col>
                         <Col md={6}>
@@ -201,13 +196,7 @@ function AgregarPersonaje() {
                                     value={personaje.imgDisenio}
                                     onChange={handleChange}
                                 />
-                                {personaje.imgDisenio && (
-                                    <img
-                                        src={personaje.imgDisenio}
-                                        alt="Vista previa de la imagen de diseño"
-                                        className="img-preview"
-                                    />
-                                )}
+                                <PreviaDeImagen imagenURL={personaje.imgDisenio} />
                             </Form.Group>
                         </Col>
                     </Row>
