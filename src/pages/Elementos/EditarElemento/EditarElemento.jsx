@@ -63,11 +63,11 @@ export default function EditarElemento() {
                     <img src={imagenURL} alt="Vista previa" className="imagen-previa" />
                 )}
                 <Row className="botones">
-                    <Button variant="danger" onClick={handleCancelar} className="btn">
-                        Cancelar
-                    </Button>
                     <Button variant="success" onClick={handleGuardarCambios} className="btn">
                         Guardar Cambios
+                    </Button>
+                    <Button variant="danger" onClick={handleCancelar} className="btn">
+                        Cancelar
                     </Button>
                 </Row>
             </Form>
