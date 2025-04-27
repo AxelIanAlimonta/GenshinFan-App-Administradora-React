@@ -55,7 +55,7 @@ export const deleteRegion = async (id) => {
 export const getRegionById = async (id) => {
     const response = await fetch(`${API_URL}/regiones/${id}`);
     if (!response.ok) {
-        throw new Error('Error fetching region by id');
+        throw new Error('Error fetching elemento by ID');
     }
     return response.json();
 };

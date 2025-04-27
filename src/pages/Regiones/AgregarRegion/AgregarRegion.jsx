@@ -1,6 +1,10 @@
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import PreviaDeImagen from "../../components/PreviaDeImagen/PreviaDeImagen";
+import PreviaDeImagen from "../../../components/PreviaDeImagen/PreviaDeImagen";
+import { useState } from "react";
+import Header from "../../../components/Header/Header";
+import "./AgregarRegion.css";
+import { createRegion } from "../../../services/dataServices/regionApiService";
 
 export default function AgregarRegion() {
 
@@ -13,28 +17,39 @@ export default function AgregarRegion() {
     }
 
     function handleAgregarRegion() {
-        navigate("/regiones");
+        createRegion({ descripcion, imagenURL })
+            .then(() => {
+                navigate("/regiones");
+            })
+            .catch((error) => {
+                console.error("Error al agregar la región:", error);
+                alert("Error al agregar la región. Intente nuevamente.");
+            });
     }
 
     return (
         <>
-            <Form>
-                <Form.Group controlId="formDescripcion">
-                    <Form.Label>Descripción</Form.Label>
-                    <Form.Control type="text" placeholder="Descripción" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
-                </Form.Group>
-                <Form.Group controlId="formImagenURL">
-                    <Form.Label>URL de la Imagen</Form.Label>
-                    <Form.Control type="text" placeholder="URL" value={imagenURL} onChange={(e) => setImagenURL(e.target.value)} />
-                    <PreviaDeImagen imagenURL={imagenURL} />
-                </Form.Group>
-            </Form>
-            <Button variant="secondary" onClick={handleCancelar}>
-                Cancelar
-            </Button>
-            <Button variant="primary" onClick={handleAgregarRegion}>
-                Agregar Región
-            </Button>
+            <Header />
+                <Form className="formularioAgregarRegion">
+                    <Form.Group controlId="formDescripcion">
+                        <Form.Label>Descripción</Form.Label>
+                        <Form.Control type="text" placeholder="Descripción" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group controlId="formImagenURL">
+                        <Form.Label>URL de la Imagen</Form.Label>
+                        <Form.Control type="text" placeholder="URL" value={imagenURL} onChange={(e) => setImagenURL(e.target.value)} />
+                        <PreviaDeImagen imagenURL={imagenURL} />
+                    </Form.Group>
+                    <div className="formularioAgregarRegion-botones">
+                        <Button variant="danger" onClick={handleCancelar}>
+                            Cancelar
+                        </Button>
+                        <Button variant="success" onClick={handleAgregarRegion}>
+                            Agregar Región
+                        </Button>
+                    </div>
+                </Form>
+
         </>
     );
 }
