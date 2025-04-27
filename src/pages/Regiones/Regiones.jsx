@@ -4,16 +4,22 @@ import Header from "../../components/Header/Header";
 import useFetchRegiones from "../../hooks/useFetchRegiones";
 import RegionesModal from "./RegionesModal";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 
 function Regiones() {
     const { regiones, addRegion, editRegion, removeRegion, loading } = useFetchRegiones();
     const [editingRegion, setEditingRegion] = useState(false);
     const [addingRegion, setAddingRegion] = useState(false);
+    const navigate = useNavigate();
 
     const [id, setId] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [imagenURL, setImagenURL] = useState("");
+
+    function handleAgregarRegion() {
+        navigate("/regiones/agregarregion");
+    }
 
     function handleCloseModal() {
         setEditingRegion(false);
@@ -60,11 +66,11 @@ function Regiones() {
         <>
             <Header />
             <main>
-                <Button variant="success" className="agregarBtn" onClick={handleAddingModal}>Agregar Región</Button>
+                <Button variant="success" className="agregarBtn" onClick={handleAgregarRegion}>Agregar Región</Button>
                 <ListGroup>
                     {regiones.map((region) => (
                         <ListGroup horizontal key={region.id} className="itemContainer">
-                            <ListGroup.Item className="item">
+                            <ListGroup.Item className="item itemDescripcion">
                                 {region.descripcion}
                             </ListGroup.Item>
                             <ListGroup.Item className="item-img">
