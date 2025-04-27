@@ -9,21 +9,27 @@ import Personajes from './pages/Personajes/Personajes';
 import AgregarPersonaje from './pages/AgregarPersonaje/AgregarPersonaje';
 import EditarPersonaje from './pages/EditarPersonaje/EditarPersonaje';
 import Armas from './pages/Armas/Armas';
+import AgregarElemento from './pages/Elementos/AgregarElemento/AgregarElemento';
+import EditarElemento from './pages/Elementos/EditarElemento/EditarElemento';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/elementos" element={<Elementos />} />
         <Route path="/regiones" element={<Regiones />} />
         <Route path="/tiposdearma" element={<TiposDeArma />} />
         <Route path="/personajes" element={<Personajes />} />
         <Route path="/agregarpersonaje" element={<AgregarPersonaje />} />
         <Route path="/editarpersonaje/:id" element={<EditarPersonaje />} />
         <Route path="/armas" element={<Armas />} />
-      </Routes>
-    </Router>
+
+        <Route path="/elementos" element={<Elementos />} />
+        <Route path="/elementos/agregarelemento" element={<AgregarElemento />} />
+        <Route path="/elementos/editarelemento/:id" element={<EditarElemento />} />
+
+      </Routes >
+    </Router >
   );
 }
 

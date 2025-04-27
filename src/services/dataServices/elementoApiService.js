@@ -45,3 +45,11 @@ export const deleteElemento = async (id) => {
     }
     return response.json();
 };
+
+export const getElementoById = async (id) => {
+    const response = await fetch(`${API_URL}/elementos/${id}`);
+    if (!response.ok) {
+        throw new Error('Error fetching elemento by ID');
+    }
+    return response.json();
+};
