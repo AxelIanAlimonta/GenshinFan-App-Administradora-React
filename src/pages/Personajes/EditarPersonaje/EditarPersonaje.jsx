@@ -5,6 +5,7 @@ import useFetchPersonaje from '../../../hooks/useFetchPersonaje';
 import { updatePersonaje } from '../../../services/dataServices/personajesApiService';
 import Header from '../../../components/Header/Header';
 import Loading from '../../../components/Loading/Loading';
+import PreviaDeImagen from '../../../components/PreviaDeImagen/PreviaDeImagen';
 import ArmasRecomendadas from '../../../components/ArmasRecomendadas/ArmasRecomendadas';
 import useFetchElementos from '../../../hooks/useFetchElementos'; // Import the hook
 import useFetchRegiones from '../../../hooks/useFetchRegiones'; // Import the hook
@@ -194,13 +195,7 @@ const EditarPersonaje = () => {
                                         value={formData.imgTarjeta}
                                         onChange={handleChange}
                                     />
-                                    {formData.imgTarjeta && (
-                                        <img
-                                            src={formData.imgTarjeta}
-                                            alt="Vista previa de la imagen de la tarjeta"
-                                            className="img-preview"
-                                        />
-                                    )}
+                                    <PreviaDeImagen imagenURL={formData.imgTarjeta} />
                                 </Form.Group>
                             </Col>
                             <Col md={6}>
@@ -212,13 +207,7 @@ const EditarPersonaje = () => {
                                         value={formData.imgDisenio}
                                         onChange={handleChange}
                                     />
-                                    {formData.imgDisenio && (
-                                        <img
-                                            src={formData.imgDisenio}
-                                            alt="Vista previa de la imagen de diseño"
-                                            className="img-preview"
-                                        />
-                                    )}
+                                    <PreviaDeImagen imagenURL={formData.imgDisenio} />
                                 </Form.Group>
                             </Col>
                         </Row>
