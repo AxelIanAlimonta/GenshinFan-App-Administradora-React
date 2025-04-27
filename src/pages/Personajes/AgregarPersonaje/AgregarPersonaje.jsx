@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { createPersonaje } from '../../services/dataServices/personajesApiService';
-import Header from '../../components/Header/Header';
-import useFetchElementos from '../../hooks/useFetchElementos'; // Import the hook
-import useFetchRegiones from '../../hooks/useFetchRegiones'; // Import the hook
-import useFetchTiposDeArma from '../../hooks/useFetchTiposDeArma'; // Import the hook
+import { createPersonaje } from '../../../services/dataServices/personajesApiService';
+import Header from '../../../components/Header/Header';
+import useFetchElementos from '../../../hooks/useFetchElementos'; // Import the hook
+import useFetchRegiones from '../../../hooks/useFetchRegiones'; // Import the hook
+import useFetchTiposDeArma from '../../../hooks/useFetchTiposDeArma'; // Import the hook
 import './AgregarPersonaje.css';
 
 function AgregarPersonaje() {
@@ -17,9 +17,9 @@ function AgregarPersonaje() {
         vidaBase: 0,
         imgTarjeta: '',
         imgDisenio: '',
-        id_Elemento: '', 
-        id_Region: '', 
-        id_TipoDeArma: '' 
+        id_Elemento: '',
+        id_Region: '',
+        id_TipoDeArma: ''
     });
 
     const { elementos } = useFetchElementos();
@@ -40,6 +40,8 @@ function AgregarPersonaje() {
         e.preventDefault();
         createPersonaje(personaje).then(() => {
             navigate('/personajes');
+        }).catch((error) => {
+            console.error('Error creating personaje:', error);
         });
     };
 

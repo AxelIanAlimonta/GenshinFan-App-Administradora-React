@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import useFetchPersonaje from '../../hooks/useFetchPersonaje';
-import { updatePersonaje } from '../../services/dataServices/personajesApiService';
-import Header from '../../components/Header/Header';
-import Loading from '../../components/Loading/Loading';
-import ArmasRecomendadas from '../../components/ArmasRecomendadas/ArmasRecomendadas';
-import useFetchElementos from '../../hooks/useFetchElementos'; // Import the hook
-import useFetchRegiones from '../../hooks/useFetchRegiones'; // Import the hook
-import useFetchTiposDeArma from '../../hooks/useFetchTiposDeArma'; // Import the hook
+import useFetchPersonaje from '../../../hooks/useFetchPersonaje';
+import { updatePersonaje } from '../../../services/dataServices/personajesApiService';
+import Header from '../../../components/Header/Header';
+import Loading from '../../../components/Loading/Loading';
+import ArmasRecomendadas from '../../../components/ArmasRecomendadas/ArmasRecomendadas';
+import useFetchElementos from '../../../hooks/useFetchElementos'; // Import the hook
+import useFetchRegiones from '../../../hooks/useFetchRegiones'; // Import the hook
+import useFetchTiposDeArma from '../../../hooks/useFetchTiposDeArma'; // Import the hook
 import './EditarPersonaje.css';
 
 const EditarPersonaje = () => {
