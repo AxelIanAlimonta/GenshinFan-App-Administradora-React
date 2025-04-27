@@ -10,6 +10,7 @@ import AgregarPersonaje from './pages/Personajes/AgregarPersonaje/AgregarPersona
 import EditarPersonaje from './pages/Personajes/EditarPersonaje/EditarPersonaje';
 import Armas from './pages/Armas/Armas';
 import AgregarElemento from './pages/Elementos/AgregarElemento/AgregarElemento';
+import AgregarRegion from './pages/Regiones/AgregarRegion/AgregarRegion';
 import EditarElemento from './pages/Elementos/EditarElemento/EditarElemento';
 
 function App() {
@@ -17,8 +18,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/regiones" element={<Regiones />} />
         <Route path="/tiposdearma" element={<TiposDeArma />} />
+
+        <Route path="/regiones" element={<Regiones />} />
+        <Route path="/agregarregion" element={<AgregarRegion />} />
 
         <Route path="/armas" element={<Armas />} />
 
