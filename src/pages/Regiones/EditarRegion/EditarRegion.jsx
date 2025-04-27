@@ -52,11 +52,11 @@ export default function EditarRegion() {
             </Form.Group>
             <PreviaDeImagen imagenURL={imagenURL} />
             <div className="formularioEditarRegion-botones">
-                <Button variant="danger" onClick={handleCancelar}>
-                    Cancelar
-                </Button>
                 <Button variant="success" onClick={handleGuardarCambios}>
                     Guardar Cambios
+                </Button>
+                <Button variant="danger" onClick={handleCancelar}>
+                    Cancelar
                 </Button>
             </div>
         </Form>
