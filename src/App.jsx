@@ -21,7 +21,7 @@ function App() {
         <Route path="/tiposdearma" element={<TiposDeArma />} />
 
         <Route path="/regiones" element={<Regiones />} />
-        <Route path="/agregarregion" element={<AgregarRegion />} />
+        <Route path="/regiones/agregarregion" element={<AgregarRegion />} />
 
         <Route path="/armas" element={<Armas />} />
 
