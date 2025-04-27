@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import useFetchRegiones from "../../hooks/useFetchRegiones";
 import RegionesModal from "./RegionesModal";
 import { useState } from "react";
+import Loading from "../../components/Loading/Loading";
 
 function Regiones() {
     const { regiones, addRegion, editRegion, removeRegion, loading } = useFetchRegiones();
@@ -49,7 +50,9 @@ function Regiones() {
     if (loading) {
         return <>
             <Header />
-            <p>Cargando...</p>;
+            <main>
+                <Loading />
+            </main>
         </>
     }
 
