@@ -21,14 +21,15 @@ const Header = () => {
             <Link className="nav-link" to="/armas">Armas</Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/armas/tiposdearma">Tipos de Arma</Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="/elementos">Elementos</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/regiones">Regiones</Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/armas/tiposdearma">Tipos de Arma</Link>
-          </li>
+         
 
         </ul>
       </div>

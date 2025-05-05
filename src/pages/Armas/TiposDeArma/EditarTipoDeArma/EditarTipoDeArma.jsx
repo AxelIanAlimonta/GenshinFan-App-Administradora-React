@@ -12,6 +12,7 @@ export default function EditarTipoDeArma() {
 
     const [descripcion, setDescripcion] = useState("");
     const [imagenURL, setImagenURL] = useState("");
+    const { id } = useParams();
 
     const navigate = useNavigate();
 
@@ -43,12 +44,12 @@ export default function EditarTipoDeArma() {
         navigate("/armas/tiposdearma");
     }
 
-    const id = useParams().id;
+
     return (<>
         <Header />
         <h2>Editar Tipo de Arma</h2>
         <Form className="formularioDeArma">
-            <Form.Group className="mb-3" controlId="formDescripcion">
+            <Form.Group className="mb-3 " controlId="formDescripcion" >
                 <Form.Label>Descripcion</Form.Label>
                 <Form.Control type="text" placeholder="Descripcion" value={descripcion} onChange={handleDescripcionChange} />
             </Form.Group>

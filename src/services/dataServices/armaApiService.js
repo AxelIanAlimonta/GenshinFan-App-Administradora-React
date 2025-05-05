@@ -45,3 +45,11 @@ export const deleteArma = async (id) => {
     }
     return response.json();
 };
+
+export const getArmaById = async (id) => {
+    const response = await fetch(`${API_URL}/armas/${id}`);
+    if (!response.ok) {
+        throw new Error('Error fetching arma by ID');
+    }
+    return response.json();
+}
