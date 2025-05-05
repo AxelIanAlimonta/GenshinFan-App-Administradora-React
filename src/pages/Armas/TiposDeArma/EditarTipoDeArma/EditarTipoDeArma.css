@@ -1,0 +1,12 @@
+.formularioDeArma {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.botonesDelForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

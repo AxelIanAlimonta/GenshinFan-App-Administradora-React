@@ -1,0 +1,12 @@
+.agregarTipoDeArmaForm {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.botonesDelForm {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}

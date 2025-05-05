@@ -27,7 +27,7 @@ const Header = () => {
             <Link className="nav-link" to="/regiones">Regiones</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/tiposdearma">Tipos de Arma</Link>
+            <Link className="nav-link" to="/armas/tiposdearma">Tipos de Arma</Link>
           </li>
 
         </ul>

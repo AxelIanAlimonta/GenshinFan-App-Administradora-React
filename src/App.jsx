@@ -6,7 +6,9 @@ import Elementos from './pages/Elementos/Elementos';
 import Regiones from './pages/Regiones/Regiones';
 import AgregarRegion from './pages/Regiones/AgregarRegion/AgregarRegion';
 import EditarRegion from './pages/Regiones/EditarRegion/EditarRegion';
-import TiposDeArma from './pages/TiposDeArma/TiposDeArma';
+import TiposDeArma from './pages/Armas/TiposDeArma/TiposDeArma';
+import AgregarTipoDeArma from './pages/Armas/TiposDeArma/AgregarTipoDeArma/AgregarTipoDeArma';
+import EditarTipoDeArma from './pages/Armas/TiposDeArma/EditarTipoDeArma/EditarTipoDeArma';
 import Personajes from './pages/Personajes/Personajes';
 import AgregarPersonaje from './pages/Personajes/AgregarPersonaje/AgregarPersonaje'
 import EditarPersonaje from './pages/Personajes/EditarPersonaje/EditarPersonaje';
@@ -19,13 +21,16 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/tiposdearma" element={<TiposDeArma />} />
 
         <Route path="/regiones" element={<Regiones />} />
         <Route path="/regiones/agregarregion" element={<AgregarRegion />} />
         <Route path="/regiones/editarregion/:id" element={<EditarRegion />} />
 
         <Route path="/armas" element={<Armas />} />
+        <Route path="/armas/tiposdearma" element={<TiposDeArma />} />
+        <Route path="/armas/tiposdearma/agregartipodearma" element={<AgregarTipoDeArma />} />
+        <Route path="/armas/tiposdearma/editartipodearma/:id" element={<EditarTipoDeArma />} />
+
 
         <Route path="/elementos" element={<Elementos />} />
         <Route path="/elementos/agregarelemento" element={<AgregarElemento />} />
