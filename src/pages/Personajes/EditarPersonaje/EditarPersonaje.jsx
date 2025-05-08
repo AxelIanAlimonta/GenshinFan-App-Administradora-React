@@ -6,7 +6,7 @@ import { updatePersonaje } from '../../../services/dataServices/personajesApiSer
 import Header from '../../../components/Header/Header';
 import Loading from '../../../components/Loading/Loading';
 import PreviaDeImagen from '../../../components/PreviaDeImagen/PreviaDeImagen';
-import ArmasRecomendadas from '../../../components/ArmasRecomendadas/ArmasRecomendadas';
+import ArmasRecomendadas from '../ArmasRecomendadas/ArmasRecomendadas';
 import useFetchElementos from '../../../hooks/useFetchElementos'; // Import the hook
 import useFetchRegiones from '../../../hooks/useFetchRegiones'; // Import the hook
 import useFetchTiposDeArma from '../../../hooks/useFetchTiposDeArma'; // Import the hook
