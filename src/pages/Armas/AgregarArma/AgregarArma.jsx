@@ -2,9 +2,12 @@ import { Button, Form } from "react-bootstrap";
 import Header from "../../../components/Header/Header";
 import { useNavigate } from "react-router-dom";
 import PreviaDeImagen from "../../../components/PreviaDeImagen/PreviaDeImagen";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./AgregarArma.css";
 import { createArma } from "../../../services/dataServices/armaApiService";
+import useFetchTiposDeArma from "../../../hooks/useFetchTiposDeArma";
+import Loadin from "../../../components/Loading/Loading";
+import Loading from "../../../components/Loading/Loading";
 
 export default function AgregarArma() {
 
@@ -13,10 +16,12 @@ export default function AgregarArma() {
     const [imagenURL, setImagenURL] = useState("");
     const [ataqueBase, setAtaqueBase] = useState(0);
     const [rareza, setRareza] = useState(0);
+    const { tiposDeArma, loading } = useFetchTiposDeArma();
+
 
 
     function handleAgregarArma(e) {
-        e.preventDefault(); 
+        e.preventDefault();
         createArma({ descripcion, ataqueBase, rareza, imagenURL })
             .then(() => {
                 console.log("Arma agregada exitosamente");
@@ -27,6 +32,12 @@ export default function AgregarArma() {
             });
     }
 
+    if (loading) {
+        return <>
+            <Header />
+            <Loading />
+        </>
+    }
 
 
     return (<>
@@ -56,6 +67,16 @@ export default function AgregarArma() {
                     <option value={3}>3</option>
                     <option value={4}>4</option>
                     <option value={5}>5</option>
+                </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formTipoArma">
+                <Form.Label>Tipo de Arma</Form.Label>
+                <Form.Select value={rareza} onChange={(e) => setRareza(Number(e.target.value))}>
+                    <option value="">Seleccione el tipo de arma</option>
+                    {tiposDeArma.map((tipo) => (
+                        <option key={tipo.id} value={tipo.id}>{tipo.descripcion}</option>
+                    ))}
                 </Form.Select>
             </Form.Group>
 
