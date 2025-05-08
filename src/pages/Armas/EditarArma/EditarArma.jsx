@@ -3,8 +3,10 @@ import Header from "../../../components/Header/Header";
 import "./EditarArma.css";
 import { Button, Form } from "react-bootstrap";
 import PreviaDeImagen from "../../../components/PreviaDeImagen/PreviaDeImagen";
-import { use, useState } from "react";
+import { useEffect, useState } from "react";
 import { updateArma, getArmaById } from "../../../services/dataServices/armaApiService";
+import useFetchTiposDeArma from "../../../hooks/useFetchTiposDeArma";
+import Loading from "../../../components/Loading/Loading";
 
 export default function EditarArma() {
     const { id } = useParams();
@@ -14,14 +16,19 @@ export default function EditarArma() {
     const [ataqueBase, setAtaqueBase] = useState(0);
     const [rareza, setRareza] = useState(0);
     const [imagenURL, setImagenURL] = useState("");
+    const [tipoDeArmaId, setTipoDeArmaId] = useState(0);
 
-    useState(() => {
+    const { tiposDeArma, loading } = useFetchTiposDeArma();
+
+
+    useEffect(() => {
         getArmaById(id)
             .then((arma) => {
                 setDescripcion(arma.descripcion);
                 setAtaqueBase(arma.ataqueBase);
                 setRareza(arma.rareza);
                 setImagenURL(arma.imagenURL);
+                setTipoDeArmaId(arma.tipoDeArmaId);
             })
             .catch((error) => {
                 console.error("Error al obtener el arma:", error);
@@ -30,7 +37,7 @@ export default function EditarArma() {
 
     function handleGuardarCambios(e) {
         e.preventDefault();
-        updateArma(id, { id, descripcion, ataqueBase, rareza, imagenURL })
+        updateArma(id, { id, descripcion, ataqueBase, rareza, imagenURL, tipoDeArmaId })
             .then(() => {
                 console.log("Arma editada exitosamente");
                 navigate("/armas");
@@ -38,6 +45,13 @@ export default function EditarArma() {
             .catch((error) => {
                 console.error("Error al editar el arma:", error);
             });
+    }
+
+    if (loading) {
+        return <>
+            <Header />
+            <Loading />
+        </>
     }
 
     return (<>
@@ -66,6 +80,16 @@ export default function EditarArma() {
                     <option value={3}>3</option>
                     <option value={4}>4</option>
                     <option value={5}>5</option>
+                </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formtipoDeArmaId">
+                <Form.Label>Tipo de Arma</Form.Label>
+                <Form.Select value={tipoDeArmaId} onChange={(e) => setTipoDeArmaId(Number(e.target.value))}>
+                    <option value="">Seleccione el tipo de arma</option>
+                    {tiposDeArma.map((tipo) => (
+                        <option key={tipo.id} value={tipo.id}>{tipo.descripcion}</option>
+                    ))}
                 </Form.Select>
             </Form.Group>
 

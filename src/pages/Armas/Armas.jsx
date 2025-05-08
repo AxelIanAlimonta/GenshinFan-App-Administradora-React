@@ -4,10 +4,12 @@ import Header from "../../components/Header/Header";
 import useFetchArmas from "../../hooks/useFetchArmas";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import useFetchTiposDeArma from "../../hooks/useFetchTiposDeArma";
 
 function Armas() {
     const navigate = useNavigate();
     const { armas, removeArma, loading } = useFetchArmas();
+    const { tiposDeArma } = useFetchTiposDeArma();
 
     function handleAgregarArma() {
         navigate("/armas/agregararma");
@@ -19,6 +21,11 @@ function Armas() {
 
     function handleDeleteArma(id) {
         removeArma(id);
+    }
+
+    function extraerDescipcionDeTipoDeArma(id) {
+        const tipoDeArma = tiposDeArma.find(tipo => tipo.id === id);
+        return tipoDeArma ? tipoDeArma.descripcion : "Tipo no definido";
     }
 
     if (loading) return <>
@@ -42,6 +49,10 @@ function Armas() {
                             <ListGroup.Item className="item">
                                 Ataque Base: {arma.ataqueBase}
                             </ListGroup.Item>
+                            <ListGroup.Item className="item">
+                                Tipo: {extraerDescipcionDeTipoDeArma(arma.tipoDeArmaId)}
+                            </ListGroup.Item>
+
                             <ListGroup.Item className="item">
                                 Rareza: {arma.rareza}
                             </ListGroup.Item>

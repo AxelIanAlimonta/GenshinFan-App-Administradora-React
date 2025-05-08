@@ -16,13 +16,14 @@ export default function AgregarArma() {
     const [imagenURL, setImagenURL] = useState("");
     const [ataqueBase, setAtaqueBase] = useState(0);
     const [rareza, setRareza] = useState(0);
+    const [tipoDeArmaId, setTipoDeArmaId] = useState(0);
     const { tiposDeArma, loading } = useFetchTiposDeArma();
 
 
 
     function handleAgregarArma(e) {
         e.preventDefault();
-        createArma({ descripcion, ataqueBase, rareza, imagenURL })
+        createArma({ descripcion, ataqueBase, rareza, imagenURL, tipoDeArmaId })
             .then(() => {
                 console.log("Arma agregada exitosamente");
                 navigate("/armas");
@@ -70,9 +71,9 @@ export default function AgregarArma() {
                 </Form.Select>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formTipoArma">
+            <Form.Group className="mb-3" controlId="formtipoDeArmaId">
                 <Form.Label>Tipo de Arma</Form.Label>
-                <Form.Select value={rareza} onChange={(e) => setRareza(Number(e.target.value))}>
+                <Form.Select value={tipoDeArmaId} onChange={(e) => setTipoDeArmaId(Number(e.target.value))}>
                     <option value="">Seleccione el tipo de arma</option>
                     {tiposDeArma.map((tipo) => (
                         <option key={tipo.id} value={tipo.id}>{tipo.descripcion}</option>
