@@ -24,8 +24,8 @@ export const addArmaRecomendada = async (personajeId, armaId) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            personajeId: personajeId,
-            armaId: armaId
+            personajeId: Number(personajeId),
+            armaId: Number(armaId)
         })
     });
     return await response.json();

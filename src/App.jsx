@@ -15,6 +15,7 @@ import EditarTipoDeArma from './pages/Armas/TiposDeArma/EditarTipoDeArma/EditarT
 import Personajes from './pages/Personajes/Personajes';
 import AgregarPersonaje from './pages/Personajes/AgregarPersonaje/AgregarPersonaje'
 import EditarPersonaje from './pages/Personajes/EditarPersonaje/EditarPersonaje';
+import AdministrarArmasRecomendadas from './pages/Personajes/AdministrarArmasRecomendadas/AdministrarArmasRecomendadas';
 import AgregarElemento from './pages/Elementos/AgregarElemento/AgregarElemento';
 import EditarElemento from './pages/Elementos/EditarElemento/EditarElemento';
 
@@ -44,6 +45,7 @@ function App() {
         <Route path="/personajes" element={<Personajes />} />
         <Route path="/agregarpersonaje" element={<AgregarPersonaje />} />
         <Route path="/editarpersonaje/:id" element={<EditarPersonaje />} />
+        <Route path="/personajes/:id/administrarArmasRecomendadas" element={<AdministrarArmasRecomendadas />} />
 
       </Routes >
     </Router >
