@@ -12,7 +12,7 @@ export default function EditarArma() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const [descripcion, setDescripcion] = useState("");
+    const [nombre, setNombre] = useState("");
     const [ataqueBase, setAtaqueBase] = useState(0);
     const [rareza, setRareza] = useState(0);
     const [imagenURL, setImagenURL] = useState("");
@@ -24,7 +24,7 @@ export default function EditarArma() {
     useEffect(() => {
         getArmaById(id)
             .then((arma) => {
-                setDescripcion(arma.descripcion);
+                setNombre(arma.nombre);
                 setAtaqueBase(arma.ataqueBase);
                 setRareza(arma.rareza);
                 setImagenURL(arma.imagenURL);
@@ -37,9 +37,8 @@ export default function EditarArma() {
 
     function handleGuardarCambios(e) {
         e.preventDefault();
-        updateArma(id, { id, descripcion, ataqueBase, rareza, imagenURL, tipoDeArmaId })
+        updateArma(id, { id, nombre, ataqueBase, rareza, imagenURL, tipoDeArmaId })
             .then(() => {
-                console.log("Arma editada exitosamente");
                 navigate("/armas");
             })
             .catch((error) => {
@@ -58,10 +57,10 @@ export default function EditarArma() {
         <Header />
         <h2>Editar Arma</h2>
         <Form className="formularioDeArma">
-            <Form.Group className="mb-3 " controlId="formDescripcion" >
-                <Form.Label>Descripcion</Form.Label>
-                <Form.Control type="text" placeholder="Descripcion"
-                    value={descripcion} onChange={(e) => setDescripcion(e.target.value)}
+            <Form.Group className="mb-3 " controlId="formNombre" >
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control type="text" placeholder="Nombre"
+                    value={nombre} onChange={(e) => setNombre(e.target.value)}
                 />
             </Form.Group>
 

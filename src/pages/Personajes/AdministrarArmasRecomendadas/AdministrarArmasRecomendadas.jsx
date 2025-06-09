@@ -19,9 +19,9 @@ export default function AdministrarArmasRecomendadas() {
             {armasRecomendadasAgregadas.map((arma) => (
                 <ListGroup key={`agregada-${arma.id}`} horizontal>
                     <ListGroup.Item className="itemImagenContainer">
-                        <img src={arma.imagenURL} alt={arma.descripcion} className="itemImagen" />
+                        <img src={arma.imagenURL} alt={arma.nombre} className="itemImagen" />
                     </ListGroup.Item>
-                    <ListGroup.Item className="itemDescripcion"><span className="armaDescripcion">{arma.descripcion}</span></ListGroup.Item>
+                    <ListGroup.Item className="itemNombre"><span className="armaDescripcion">{arma.nombre}</span></ListGroup.Item>
                     <ListGroup.Item className="itemBotonEliminar">
                         <Button
                             variant="danger"
@@ -41,11 +41,11 @@ export default function AdministrarArmasRecomendadas() {
                 <ListGroup key={`noagregada-${arma.id}`} horizontal>
 
                     <ListGroup.Item className="itemImagenContainer">
-                        <img src={arma.imagenURL} alt={arma.descripcion} className="itemImagen" />
+                        <img src={arma.imagenURL} alt={arma.nombre} className="itemImagen" />
                     </ListGroup.Item>
 
 
-                    <ListGroup.Item className="itemDescripcion"><span className="armaDescripcion">{arma.descripcion}</span></ListGroup.Item>
+                    <ListGroup.Item className="itemNombre"><span className="armaDescripcion">{arma.nombre}</span></ListGroup.Item>
                     <ListGroup.Item className="itemBotonAgregar">
                         <Button
                             variant="success"

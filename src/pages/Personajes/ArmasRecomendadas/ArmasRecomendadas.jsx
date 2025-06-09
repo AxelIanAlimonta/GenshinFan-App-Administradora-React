@@ -3,13 +3,11 @@ import Loading from '../../../components/Loading/Loading';
 import './ArmasRecomendadas.css'
 import { useNavigate } from 'react-router-dom';
 import useArmasRecomendadasDePersonaje from '../../../hooks/useArmasRecomendadasDePersonaje/useArmasRecomendadasDePersonaje';
-import { useArmasRecomendadas } from '../../../hooks/useArmasRecomendadas';
 
 const ArmasRecomendadas = ({ personajeId }) => {
     const {
         armasRecomendadasAgregadas,
         loading,
-        eliminarArmaRecomendada
     } = useArmasRecomendadasDePersonaje(personajeId);
 
     const navigate = useNavigate();
@@ -32,7 +30,7 @@ const ArmasRecomendadas = ({ personajeId }) => {
                                 <img src={arma.imagenURL} alt={arma.descripcion} className="itemImagen" />
                             </ListGroup.Item>
                             <ListGroup.Item className="item armaDescripcion">
-                                {arma.descripcion}
+                                {arma.nombre}
                             </ListGroup.Item>
                             
                         </ListGroup>

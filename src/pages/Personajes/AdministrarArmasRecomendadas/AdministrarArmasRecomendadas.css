@@ -1,4 +1,4 @@
-.itemImagenContainer,.itemDescripcion,.itemBotonAgregar{
+.itemImagenContainer,.itemNombre,.itemBotonAgregar{
     display: flex;
     align-items: center;
 }

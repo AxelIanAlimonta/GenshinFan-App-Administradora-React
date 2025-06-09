@@ -6,13 +6,12 @@ import { useEffect, useState } from "react";
 import "./AgregarArma.css";
 import { createArma } from "../../../services/dataServices/armaApiService";
 import useFetchTiposDeArma from "../../../hooks/useFetchTiposDeArma";
-import Loadin from "../../../components/Loading/Loading";
 import Loading from "../../../components/Loading/Loading";
 
 export default function AgregarArma() {
 
     const navigate = useNavigate();
-    const [descripcion, setDescripcion] = useState("");
+    const [nombre, setNombre] = useState("");
     const [imagenURL, setImagenURL] = useState("");
     const [ataqueBase, setAtaqueBase] = useState(0);
     const [rareza, setRareza] = useState(0);
@@ -23,7 +22,7 @@ export default function AgregarArma() {
 
     function handleAgregarArma(e) {
         e.preventDefault();
-        createArma({ descripcion, ataqueBase, rareza, imagenURL, tipoDeArmaId })
+        createArma({ nombre, ataqueBase, rareza, imagenURL, tipoDeArmaId })
             .then(() => {
                 console.log("Arma agregada exitosamente");
                 navigate("/armas");
@@ -45,10 +44,10 @@ export default function AgregarArma() {
         <Header />
         <h2>Agregar Arma</h2>
         <Form className="formularioDeArma">
-            <Form.Group className="mb-3 " controlId="formDescripcion" >
-                <Form.Label>Descripcion</Form.Label>
-                <Form.Control type="text" placeholder="Descripcion"
-                    value={descripcion} onChange={(e) => setDescripcion(e.target.value)}
+            <Form.Group className="mb-3 " controlId="formNombre" >
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control type="text" placeholder="Nombre"
+                    value={nombre} onChange={(e) => setNombre(e.target.value)}
                 />
             </Form.Group>
 

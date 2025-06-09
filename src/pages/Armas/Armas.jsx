@@ -23,7 +23,7 @@ function Armas() {
         removeArma(id);
     }
 
-    function extraerDescipcionDeTipoDeArma(id) {
+    function obtenerTipoDeArma(id) {
         const tipoDeArma = tiposDeArma.find(tipo => tipo.id === id);
         return tipoDeArma ? tipoDeArma.descripcion : "Tipo no definido";
     }
@@ -43,21 +43,20 @@ function Armas() {
                 <ListGroup>
                     {armas.map((arma) => (
                         <ListGroup horizontal key={arma.id} className="itemContainer">
-                            <ListGroup.Item className="item armaDescripcion">
-                                {arma.descripcion}
+                            <ListGroup.Item className="item armaNombre">
+                                {arma.nombre}
                             </ListGroup.Item>
                             <ListGroup.Item className="item">
                                 Ataque Base: {arma.ataqueBase}
                             </ListGroup.Item>
                             <ListGroup.Item className="item">
-                                Tipo: {extraerDescipcionDeTipoDeArma(arma.tipoDeArmaId)}
+                                Tipo: {obtenerTipoDeArma(arma.tipoDeArmaId)}
                             </ListGroup.Item>
-
                             <ListGroup.Item className="item">
                                 Rareza: {arma.rareza}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <img src={arma.imagenURL} alt={arma.descripcion} className="itemImagen" />
+                                <img src={arma.imagenURL} alt={arma.nombre} className="itemImagen" />
                             </ListGroup.Item>
                             <ListGroup.Item className="item">
                                 <Button variant="primary" onClick={() => handleEditarArma(arma.id)}>Editar</Button>
