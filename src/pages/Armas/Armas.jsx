@@ -12,11 +12,11 @@ function Armas() {
     const { tiposDeArma } = useFetchTiposDeArma();
 
     function handleAgregarArma() {
-        navigate("/armas/agregararma");
+        navigate("/armas/agregar");
     }
 
     function handleEditarArma(id) {
-        navigate(`/armas/editararma/${id}`);
+        navigate(`/armas/editar/${id}`);
     }
 
     function handleDeleteArma(id) {

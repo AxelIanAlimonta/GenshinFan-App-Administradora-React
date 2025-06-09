@@ -10,11 +10,11 @@ function Regiones() {
     const navigate = useNavigate();
 
     function handleAgregarRegion() {
-        navigate("/regiones/agregarregion");
+        navigate("/regiones/agregar");
     }
 
     function handleEditarRegion(id) {
-        navigate(`/regiones/editarregion/${id}`);
+        navigate(`/regiones/editar/${id}`);
     }
 
     function handleDeleteRegion(id) {

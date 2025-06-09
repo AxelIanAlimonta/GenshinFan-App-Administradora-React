@@ -26,25 +26,25 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/regiones" element={<Regiones />} />
-        <Route path="/regiones/agregarregion" element={<AgregarRegion />} />
-        <Route path="/regiones/editarregion/:id" element={<EditarRegion />} />
+        <Route path="/regiones/agregar" element={<AgregarRegion />} />
+        <Route path="/regiones/editar/:id" element={<EditarRegion />} />
 
         <Route path="/armas" element={<Armas />} />
-        <Route path="/armas/agregararma" element={<AgregarArma />} />
-        <Route path="/armas/editararma/:id" element={<EditarArma />} />
+        <Route path="/armas/agregar" element={<AgregarArma />} />
+        <Route path="/armas/editar/:id" element={<EditarArma />} />
 
         <Route path="/armas/tiposdearma" element={<TiposDeArma />} />
-        <Route path="/armas/tiposdearma/agregartipodearma" element={<AgregarTipoDeArma />} />
-        <Route path="/armas/tiposdearma/editartipodearma/:id" element={<EditarTipoDeArma />} />
+        <Route path="/armas/tiposdearma/agregar" element={<AgregarTipoDeArma />} />
+        <Route path="/armas/tiposdearma/editar/:id" element={<EditarTipoDeArma />} />
 
 
         <Route path="/elementos" element={<Elementos />} />
-        <Route path="/elementos/agregarelemento" element={<AgregarElemento />} />
-        <Route path="/elementos/editarelemento/:id" element={<EditarElemento />} />
+        <Route path="/elementos/agregar" element={<AgregarElemento />} />
+        <Route path="/elementos/editar/:id" element={<EditarElemento />} />
 
         <Route path="/personajes" element={<Personajes />} />
-        <Route path="/agregarpersonaje" element={<AgregarPersonaje />} />
-        <Route path="/editarpersonaje/:id" element={<EditarPersonaje />} />
+        <Route path="/personajes/agregar" element={<AgregarPersonaje />} />
+        <Route path="/personajes/editar/:id" element={<EditarPersonaje />} />
         <Route path="/personajes/:id/administrarArmasRecomendadas" element={<AdministrarArmasRecomendadas />} />
 
       </Routes >

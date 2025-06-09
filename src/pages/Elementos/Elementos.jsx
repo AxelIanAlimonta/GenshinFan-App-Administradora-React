@@ -12,12 +12,12 @@ function Elementos() {
     const navigate = useNavigate();
 
     function handleEditElement(id) {
-        navigate(`/elementos/editarelemento/${id}`);
+        navigate(`/elementos/editar/${id}`);
     }
 
 
     function handleAgregarElemento() {
-        navigate("/elementos/agregarelemento");
+        navigate("/elementos/agregar");
     }
 
     function handleDeleteElement(id) {

@@ -12,11 +12,11 @@ function TiposDeArma() {
 
 
     function handleAgregarTipoDeArma() {
-        navigate("/armas/tiposdearma/agregartipodearma");
+        navigate("/armas/tiposdearma/agregar");
     }
 
     function handleEditarTipoDeArma(id) {
-        navigate(`/armas/tiposdearma/editartipodearma/${id}`);
+        navigate(`/armas/tiposdearma/editar/${id}`);
     }
 
     function handleDeleteTipoDeArma(id) {

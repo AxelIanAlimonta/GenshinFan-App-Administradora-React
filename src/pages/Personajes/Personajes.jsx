@@ -12,11 +12,11 @@ function Personajes() {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleEditClick = (id) => {
-        navigate(`/editarpersonaje/${id}`);
+        navigate(`/personajes/editar/${id}`);
     };
 
     const handleAddClick = () => {
-        navigate('/agregarpersonaje');
+        navigate('/personajes/agregar');
     };
 
     const handleDeleteClick = (id) => {
