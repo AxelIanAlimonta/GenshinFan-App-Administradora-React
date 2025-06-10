@@ -112,7 +112,7 @@ function AgregarPersonaje() {
                                     <option value="">Seleccionar región</option>
                                     {regiones.map((region) => (
                                         <option key={region.id} value={region.id}>
-                                            {region.descripcion}
+                                            {region.nombre}
                                         </option>
                                     ))}
                                 </Form.Select>
