@@ -106,7 +106,7 @@ const EditarPersonaje = () => {
                                         <option value="">Seleccionar elemento</option>
                                         {elementos.map((elemento) => (
                                             <option key={elemento.id} value={elemento.id}>
-                                                {elemento.descripcion}
+                                                {elemento.nombre}
                                             </option>
                                         ))}
                                     </Form.Select>

@@ -8,13 +8,13 @@ import "./EditarElemento.css";
 export default function EditarElemento() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [descripcion, setDescripcion] = useState("");
+    const [nombre, setNombre] = useState("");
     const [imagenURL, setImagenURL] = useState("");
 
 
     useEffect(() => {
         getElementoById(id).then((data) => {
-            setDescripcion(data.descripcion);
+            setNombre(data.nombre);
             setImagenURL(data.imagenURL);
         }).catch((error) => {
             console.error("Error fetching elemento:", error);
@@ -22,13 +22,13 @@ export default function EditarElemento() {
     }, [id]);
 
     function handleCancelar() {
-        setDescripcion("");
+        setNombre("");
         setImagenURL("");
         navigate("/elementos");
     }
 
     function handleGuardarCambios() {
-        updateElemento(id, { id, descripcion, imagenURL }).then(() => {
+        updateElemento(id, { id, nombre, imagenURL }).then(() => {
             navigate("/elementos");
         }).catch((error) => {
             console.error("Error updating elemento:", error);
@@ -40,13 +40,13 @@ export default function EditarElemento() {
             <Header />
             <h2>Editar Elemento</h2>
             <Form className="formulario">
-                <Form.Group controlId="formDescripcion">
-                    <Form.Label>Descripcion</Form.Label>
+                <Form.Group controlId="formNombre">
+                    <Form.Label>Nombre</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="Descripcion"
-                        value={descripcion}
-                        onChange={(e) => setDescripcion(e.target.value)}
+                        placeholder="Nombre"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group controlId="formImagenURL">

@@ -39,10 +39,10 @@ function Elementos() {
                     {elementos.map((elemento) => (
                         <ListGroup horizontal key={elemento.id} className="itemContainer">
                             <ListGroup.Item className="item">
-                                {elemento.descripcion}
+                                {elemento.nombre}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <img src={elemento.imagenURL} alt={elemento.descripcion} className="itemImagen" />
+                                <img src={elemento.imagenURL} alt={elemento.nombre} className="itemImagen" />
                             </ListGroup.Item>
                             <ListGroup.Item className="item">
                                 <Button variant="primary" onClick={() => handleEditElement(elemento.id)}>Editar</Button>
