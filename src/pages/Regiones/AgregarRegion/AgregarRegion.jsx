@@ -8,7 +8,7 @@ import { createRegion } from "../../../services/dataServices/regionApiService";
 
 export default function AgregarRegion() {
 
-    const [descripcion, setDescripcion] = useState("");
+    const [nombre, setNombre] = useState("");
     const [imagenURL, setImagenURL] = useState("");
     let navigate = useNavigate();
 
@@ -17,7 +17,7 @@ export default function AgregarRegion() {
     }
 
     function handleAgregarRegion() {
-        createRegion({ descripcion, imagenURL })
+        createRegion({  nombre, imagenURL })
             .then(() => {
                 navigate("/regiones");
             })
@@ -31,9 +31,9 @@ export default function AgregarRegion() {
         <>
             <Header />
             <Form className="formularioAgregarRegion">
-                <Form.Group controlId="formDescripcion">
-                    <Form.Label>Descripción</Form.Label>
-                    <Form.Control type="text" placeholder="Descripción" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+                <Form.Group controlId="formNombre">
+                    <Form.Label>Nombre</Form.Label>
+                    <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId="formImagenURL">
                     <Form.Label>URL de la Imagen</Form.Label>

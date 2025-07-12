@@ -38,11 +38,11 @@ function Regiones() {
                 <ListGroup>
                     {regiones.map((region) => (
                         <ListGroup horizontal key={region.id} className="itemContainer">
-                            <ListGroup.Item className="item itemDescripcion">
-                                {region.descripcion}
+                            <ListGroup.Item className="item itemNombre">
+                                {region.nombre}
                             </ListGroup.Item>
                             <ListGroup.Item className="item-img">
-                                <img src={region.imagenURL} alt={region.descripcion} className="itemImagen" />
+                                <img src={region.imagenURL} alt={region.nombre} className="itemImagen" />
                             </ListGroup.Item>
                             <ListGroup.Item className="item">
                                 <Button variant="primary" onClick={() => handleEditarRegion(region.id)}>Editar</Button>

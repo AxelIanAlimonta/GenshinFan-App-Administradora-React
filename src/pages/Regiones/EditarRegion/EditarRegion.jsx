@@ -10,14 +10,14 @@ import "./EditarRegion.css";
 export default function EditarRegion() {
 
     const { id } = useParams();
-    const [descripcion, setDescripcion] = useState("asd");
+    const [nombre, setNombre] = useState("asd");
     const [imagenURL, setImagenURL] = useState("asd");
 
     const navigate = useNavigate();
 
     useEffect(() => {
         getRegionById(id).then((region) => {
-            setDescripcion(region.descripcion);
+            setNombre(region.nombre);
             setImagenURL(region.imagenURL);
         }).catch((error) => {
             console.error("Error fetching region data:", error);
@@ -31,7 +31,7 @@ export default function EditarRegion() {
     }
 
     function handleGuardarCambios() {
-        updateRegion(id, { id, descripcion, imagenURL }).then(() => {
+        updateRegion(id, { id, nombre, imagenURL }).then(() => {
             navigate("/regiones");
         }).catch((error) => {
             console.error("Error updating region:", error);
@@ -42,9 +42,9 @@ export default function EditarRegion() {
     return (<>
         <Header />
         <Form className="formularioEditarRegion">
-            <Form.Group controlId="formDescripcion">
-                <Form.Label>Descripción</Form.Label>
-                <Form.Control type="text" placeholder="Descripción" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+            <Form.Group controlId="formNombre">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
             </Form.Group>
             <Form.Group controlId="formImagenURL">
                 <Form.Label>URL de la Imagen</Form.Label>
