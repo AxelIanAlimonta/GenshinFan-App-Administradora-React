@@ -59,7 +59,7 @@ export default function AdministrarArmasRecomendadas() {
             ))}
         </ListGroup>
 
-        <Button variant="primary" onClick={() => navigate(`/editarpersonaje/${idPersonaje}`)} className="mt-3">Volver</Button>
+        <Button variant="primary" onClick={() => navigate(`/personajes/editar/${idPersonaje}`)} className="mt-3">Volver</Button>
 
     </>
     );
