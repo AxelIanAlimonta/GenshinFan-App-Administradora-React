@@ -27,9 +27,11 @@ function Personajes() {
         setSearchTerm(e.target.value);
     };
 
-    const filteredPersonajes = personajes.filter((personaje) =>
-        personaje.nombre.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const personajesFiltrados = personajes
+        .filter((personaje) =>
+            personaje.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        .sort((a, b) => a.nombre.localeCompare(b.nombre));
 
     return (
         <>
@@ -48,7 +50,7 @@ function Personajes() {
                 </Button>
 
                 {loading && <Loading />}
-                {filteredPersonajes.map((personaje) => (
+                {personajesFiltrados.map((personaje) => (
                     <ListGroup key={personaje.id} horizontal>
                         <ListGroup.Item className="nombrePersonaje">
                             {personaje.nombre}
